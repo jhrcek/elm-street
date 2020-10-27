@@ -77,10 +77,10 @@ class Elm a where
     toElmDefinition :: Proxy a -> ElmDefinition
 
     default toElmDefinition
-        :: ( HasNoTypeVars a
-           , HasLessThanEightUnnamedFields a
-           , HasNoNamedSum a
-           , Generic a
+        :: --( HasNoTypeVars a
+           --, HasLessThanEightUnnamedFields a
+           --, HasNoNamedSum a
+           ( Generic a
            , GenericElmDefinition (Rep a)
            )
         => Proxy a

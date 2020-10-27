@@ -23,8 +23,7 @@ import GHC.Generics (Generic, Rep)
 import Type.Reflection (Typeable, typeRep)
 
 import Elm.Ast (TypeName (..))
-import Elm.Generic (Elm (..), GenericElmDefinition (..), HasLessThanEightUnnamedFields,
-                    HasNoNamedSum, HasNoTypeVars, stripTypeNamePrefix)
+import Elm.Generic (Elm (..), GenericElmDefinition (..), stripTypeNamePrefix)
 
 import qualified Data.Text as T
 import qualified GHC.Generics as Generic (from)
@@ -152,10 +151,10 @@ newtype ElmStreet a = ElmStreet
     { unElmStreet :: a
     }
 
-instance ( HasNoTypeVars a
-         , HasLessThanEightUnnamedFields a
-         , HasNoNamedSum a
-         , Generic a
+instance --( HasNoTypeVars a
+         --, HasLessThanEightUnnamedFields a
+         --, HasNoNamedSum a
+         ( Generic a
          , GenericElmDefinition (Rep a)
          ) => Elm (ElmStreet a) where
     toElmDefinition _ = genericToElmDefinition
